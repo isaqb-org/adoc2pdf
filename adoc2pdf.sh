@@ -45,7 +45,7 @@ printf "...done\n\n"
 
 # odt2pdf
 echo "Step 3: converting odt to pdf"
-cd odt2pdf && docker build -t libreoffice . && cd ..
+#cd odt2pdf && docker build -t libreoffice . && cd ..
 docker run --rm \
    -v $BUILD_PATH:/documents \
    libreoffice $ODT_FILE
