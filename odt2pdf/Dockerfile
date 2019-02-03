@@ -8,5 +8,3 @@ WORKDIR /documents
 VOLUME [ "/documents" ]
 
 ENTRYPOINT [ "soffice", "--headless", "--convert-to", "pdf" ]
-
-CMD [ "lorem-ipsum.odt" ]
