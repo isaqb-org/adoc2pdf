@@ -1,10 +1,12 @@
 FROM ruby:alpine
 
-VOLUME ["/pdf"]
-
 RUN gem install asciidoctor-pdf --pre \
  && gem install coderay \
- && asciidoctor-pdf -v
+ && gem install concurrent-ruby \
+ && asciidoctor-pdf -v \
+ && chmod a+x /bin/sh \
+ && rm -rf /var/cache/apk/*
 
 
 ENTRYPOINT ["asciidoctor-pdf"]
+CMD ["-v"]

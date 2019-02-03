@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# This script is based upon the original from Peter Goetz.
+# It transforms a given asciidoc source file into pdf
+# by using three transformation steps (adoc->docbook->odt->styled-odt)
+#
+
 FILE_PATH=${1:-example.txt}
 FILE=$(basename "$FILE_PATH")
 ADOC_DIR=`dirname "$FILE_PATH"`
