@@ -3,6 +3,7 @@ FROM ruby:alpine
 RUN gem install asciidoctor-pdf --pre \
  && gem install coderay \
  && gem install concurrent-ruby \
+ && gem install asciidoctor-rouge --pre \
  && asciidoctor-pdf -v \
  && chmod a+x /bin/sh \
  && rm -rf /var/cache/apk/*
