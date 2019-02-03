@@ -55,6 +55,15 @@ Then you can start the transformation:
 
     ./adoc2pdf_native.sh <path+file>
 
-In the background we use a custom pdf style, see the script for details.
+For example:
 
-See the [AsciiDoctor pdf guide](https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc)
+    ./adoc2pdf_native.sh /Users/<your-id>/projects/isaqb/asciidoctor-pdf/examples/chronicles-example.adoc
+
+In the background we use a custom pdf style, see the script for details. These styles
+are located in:
+
+    ./asciidoctorpdf/style
+
+
+
+See the [AsciiDoctor pdf guide](https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc) for extensive documentation on styling options.
