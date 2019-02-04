@@ -273,3 +273,13 @@ footer:
       content: $footer_recto_center_content
     right:
       content: $footer_recto_left_content
+
+header:
+  height: 0.75in
+  image_vertical_align: 2 # (1)
+  recto:
+    right:
+      content: image:isaqb-logo.jpg[width=80]
+  verso:
+    left:
+      content: $header_recto_right_content

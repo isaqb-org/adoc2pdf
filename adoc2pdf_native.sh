@@ -26,6 +26,7 @@ docker run --rm \
    -a pdf-stylesdir=/style/themes \
    -a pdf-style=isaqb \
    -a pdf-fontsdir=/style/fonts  \
+   -a imagesdir=/documents/images \
    --verbose \
    -D /build \
    /documents/$FILE_NAME.adoc || { echo "asciidoc-pdf conversion failed"; exit 1; }
