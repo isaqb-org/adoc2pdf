@@ -257,15 +257,19 @@ footer:
   recto:
     #columns: "<50% =0% >50%"
     right:
-      content: '{page-number}'
+      content: 'Seite *{page-number}* von {page-count}'
+    left:
+      content: '(C) iSAQB e.V.'
       #content: '{section-or-chapter-title} | {page-number}'
       #content: '{document-title} | {page-number}'
-    #center:
-    #  content: '{page-number}'
+      #content: '{page-number} | {chapter-title}'
+    center:
+      content: 'Version {document-version}'
   verso:
     #columns: $footer_recto_columns
     left:
       content: $footer_recto_right_content
-      #content: '{page-number} | {chapter-title}'
-    #center:
-    #  content: '{page-number}'
+    center:
+      content: $footer_recto_center_content
+    right:
+      content: $footer_recto_left_content
