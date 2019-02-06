@@ -26,7 +26,7 @@ echo "internal build dir : $BUILD_DIR"
 echo "pdf style dir      : $STYLE_DIR"
 echo "*******************************************************\n\n"
 
-mkdir $BUILD_DIR
+mkdir -p $BUILD_DIR
 
 printf "calling asciidoc-pdf "
 docker run --rm \
