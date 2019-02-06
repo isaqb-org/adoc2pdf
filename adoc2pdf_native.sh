@@ -1,5 +1,16 @@
 #!/bin/sh
 
+convertHostDirectory () {
+ 
+  # convert given directory path if running in WSL
+  if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+    echo $(wslpath -m $(realpath $1))
+  else
+    echo $1
+  fi
+}
+
+
 FILE_PATH=${1:-example.adoc}
 FILE=$(basename "$FILE_PATH")
 ADOC_DIR=`dirname "$FILE_PATH"`
@@ -19,9 +30,9 @@ mkdir $BUILD_DIR
 
 printf "calling asciidoc-pdf "
 docker run --rm \
-   -v $BUILD_DIR:/build   \
-   -v $ADOC_DIR:/documents:ro \
-   -v $STYLE_DIR:/style:ro \
+   -v $(convertHostDirectory $BUILD_DIR):/build   \
+   -v $(convertHostDirectory $ADOC_DIR):/documents:ro \
+   -v $(convertHostDirectory $STYLE_DIR):/style:ro \
    isaqb-adoc2pdf \
    -a pdf-stylesdir=/style/themes \
    -a pdf-style=isaqb \
