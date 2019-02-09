@@ -38,7 +38,10 @@ docker run --rm \
    -a pdf-style=isaqb \
    -a pdf-fontsdir=/style/fonts  \
    -a imagesdir=/documents/images \
+   -a withRemarks \
+   -a language=DE \
    --verbose \
+   --failure-level=WARN\
    -D /build \
    /documents/$FILE_NAME.adoc || { echo "asciidoc-pdf conversion failed"; exit 1; }
 printf "...done\n\n"
