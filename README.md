@@ -40,7 +40,7 @@ The main script is `configure-and-convert-in-container.sh`, which is located in 
     * `/style` is where the pdf theme is located. 
     * `/documents` is where asciidoctor-pdf expects your asciidoc input file 
 4. During the conversion, the output pdf is created in `/build`.
-      
+
 
 ## PDF Styling
 
@@ -60,6 +60,12 @@ The scripts and container are tailored around some specific requirements:
 * convert documents written in several (at least EN and DE) languages
 * distinguish between _development_ (dev) and _production_ (prod) versions of the target documents: _dev_ versions need to contain comments and remarks, which are contained within the asciidoc source documents.
 
+## ODT-based Conversion
+
+There's a folder (odt-based-conversion) which contains early experiments with a conversion process based upon OpenOffice.
+
+In case anybody with OpenOffice experience feels eager enough to finish this experiment - great honor would fall upon you.
+All others can safely ignore this folder...
 
 ## License and Copyright
 
