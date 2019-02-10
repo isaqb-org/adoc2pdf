@@ -1,5 +1,3 @@
-# Generate PDF  From Asciidoc
-
 # Docker based conversion from AsciiDoc to PDF for iSAQB curricula
 
 
@@ -13,19 +11,36 @@ As a prerequisite, you need to build the container.
 
 ## Usage
 
-Call the `adoc2pdf.sh` script from the command line.
+You have two options - one with some interactivity
+### command-line configuration: adoc2pdf.sh
+Call the `adoc2pdf.sh` script from the command line with the input filename (full path) as parameter, for example:
 
-* file: full path of the input file.
-* language: what language (DE, EN or all) 
-* stage: dev (include remarks and comments in output)
-* attributes: other asciidoc attributes (not yet implemented):
+    $./adoc2pdf.sh /Users/gstarke/projects/isaqb/foundation/curriculum-foundation.adoc
 
+
+### interactive configuration: convert.sh
+Call the `convert.sh` script from the command line with
+
+    $./convert.sh /Users/gstarke/projects/isaqb/foundation/curriculum-foundation.adoc
+
+This will start an interactive shell in the container, giving you several additional options to configure, see figure below:
+
+![](documentation/interactive-configuration.png)
 
 ## How it works
 
 The main script is `configure-and-convert-in-container.sh`, which is located in `./assets`. That script is copied into the Docker container during the build process and is its `ENTRYPOINT`.
 
+![](documentation/adoc2pdf-docker-overview.png)
 
+1. At first you need to build the container. There's a `build-container.sh` script prepared for you.
+2. You have two options to convert asciidoc files (see above). The `convert.sh` (see above) gives you some flexibility without forcing you to edit script files.
+3. Both scripts `run` the Docker container, mapping several local directories to paths within the container:
+    * `/build` is where the output of the conversion is written
+    * `/style` is where the pdf theme is located. 
+    * `/documents` is where asciidoctor-pdf expects your asciidoc input file 
+4. During the conversion, the output pdf is created in `/build`.
+      
 
 ## PDF Styling
 
