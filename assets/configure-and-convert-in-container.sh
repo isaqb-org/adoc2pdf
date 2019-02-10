@@ -11,6 +11,7 @@
 # $1 LANGUAGE (2-letter format, e.g. DE or EN)
 # $2 STAGE, e.g. dev or prod
 # $3 INPUTFILE, input filename
+# (not yet implemented): additional parameters to be passed as asciidoc attributes
 
 ARGNUM=3
 EXPECTED="expect LANGUAGE, STAGE and FILE (in that order)"
@@ -42,8 +43,7 @@ fi
 
 if [ $# -gt $ARGNUM ]
   then
-  echo "too many arguments given, $EXPECTED"
-  exit 1
+  echo "more then $ARGNUM arguments given..."
 fi
 
 
@@ -71,26 +71,6 @@ function convertHostDirectory () {
 }
 
 
-function run_docker() {
-  printf "calling asciidoc-pdf "
-  docker run --rm \
-   -v $(convertHostDirectory $BUILD_DIR):/build   \
-   -v $(convertHostDirectory $ADOC_DIR):/documents:ro \
-   -v $(convertHostDirectory $STYLE_DIR):/style:ro \
-   isaqb-adoc2pdf \
-   -a pdf-stylesdir=/style/themes \
-   -a pdf-style=isaqb \
-   -a pdf-fontsdir=/style/fonts  \
-   -a imagesdir=/documents/images \
-   -a withRemarks \
-   -a language=DE \
-   --verbose \
-   --failure-level=WARN\
-   -D /build \
-   /documents/$FILE_NAME.adoc || { echo "asciidoc-pdf conversion failed"; exit 1; }
-  printf "...done\n\n"
-}
-
 
 function convert_adoc2pdf() {
    
@@ -103,7 +83,7 @@ function convert_adoc2pdf() {
    fi
   
    echo "converting asciidoc to pdf"
-   asciidoctorpdf \
+   asciidoctor-pdf \
    -a pdf-stylesdir=/style/themes \
    -a pdf-style=isaqb \
    -a pdf-fontsdir=/style/fonts  \

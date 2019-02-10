@@ -1,11 +1,11 @@
 # build with "docker build -t isaqb-adoc2pdf --force-rm ."
 FROM ruby:alpine
 
-LABEL version="0.1.1"
+LABEL version="0.1.2"
 LABEL description="convert iSAQB curricula from asciidoc to pdf"
 LABEL vendor="iSAQB FLWG, Gernot Starke"
 
-COPY convert.sh .
+COPY assets/configure-and-convert-in-container.sh .
 
 RUN apk update \
  && apk add bash ncurses \
@@ -18,5 +18,5 @@ RUN apk update \
  && rm -rf /var/cache/apk/*
 
     
-ENTRYPOINT ["convert.sh"]
+ENTRYPOINT ["configure-and-convert-in-container.sh"]
 CMD ["EN", "dev", "example.adoc"]
