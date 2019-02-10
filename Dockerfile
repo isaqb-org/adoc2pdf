@@ -18,5 +18,5 @@ RUN apk update \
  && rm -rf /var/cache/apk/*
 
     
-ENTRYPOINT ["configure-and-convert-in-container.sh"]
+ENTRYPOINT ["./configure-and-convert-in-container.sh"]
 CMD ["EN", "dev", "example.adoc"]

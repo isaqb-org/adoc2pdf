@@ -31,6 +31,7 @@ MAGENTA=`tput setaf 5`
 BOLD=`tput bold`
 RESET=`tput sgr0`
 
+export TERM=vt100
 
 # check input params
 # ==================
