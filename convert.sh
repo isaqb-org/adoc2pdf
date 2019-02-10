@@ -16,7 +16,7 @@ FILE=$(basename "$FILE_PATH")
 ADOC_DIR=`dirname "$FILE_PATH"`
 FILE_NAME="${FILE%.*}"
 
-STYLE_DIR="${PWD}/asciidoctorpdf/style"
+STYLE_DIR="${PWD}/style"
 BUILD_DIR="${PWD}/build"
 
 echo "Transforming $FILE to PDF"
@@ -29,19 +29,12 @@ echo "*******************************************************\n\n"
 mkdir -p $BUILD_DIR
 
 printf "calling asciidoc-pdf "
-docker run --rm \
+docker run --rm -i -t \
    -v $(convertHostDirectory $BUILD_DIR):/build   \
    -v $(convertHostDirectory $ADOC_DIR):/documents:ro \
    -v $(convertHostDirectory $STYLE_DIR):/style:ro \
    isaqb-adoc2pdf \
-   -a pdf-stylesdir=/style/themes \
-   -a pdf-style=isaqb \
-   -a pdf-fontsdir=/style/fonts  \
-   -a imagesdir=/documents/images \
-   -a withRemarks \
-   -a language=DE \
-   --verbose \
-   --failure-level=WARN\
-   -D /build \
-   /documents/$FILE_NAME.adoc || { echo "asciidoc-pdf conversion failed"; exit 1; }
+   EN \
+   dev \
+   $1 
 printf "...done\n\n"
