@@ -7,7 +7,7 @@ We convert from asciidoc to pdf using the [AsciiDoctor-PDF](https://asciidoctor.
 
 As a prerequisite, you need to build the container.
 
-    ./buid-container.sh
+    ./build-container.sh
 
 ## Usage
 
@@ -37,8 +37,8 @@ The main script is `configure-and-convert-in-container.sh`, which is located in 
 2. You have two options to convert asciidoc files (see above). The `convert.sh` (see above) gives you some flexibility without forcing you to edit script files.
 3. Both scripts `run` the Docker container, mapping several local directories to paths within the container:
     * `/build` is where the output of the conversion is written
-    * `/style` is where the pdf theme is located. 
-    * `/documents` is where asciidoctor-pdf expects your asciidoc input file 
+    * `/pdf-theme` is where the pdf theme is located.
+    * `/documents` is where asciidoctor-pdf expects your asciidoc input file
 4. During the conversion, the output pdf is created in `/build`.
 
 
@@ -50,7 +50,7 @@ See the [AsciiDoctor pdf guide](https://github.com/asciidoctor/asciidoctor-pdf/b
 
 For conversion to pdf we use our custom pdf theme, named *isaqb-theme.yml*. This theme is located in:
 
-    ./style
+    ./pdf-theme
 
 
 ## Requirements

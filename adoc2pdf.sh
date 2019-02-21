@@ -6,7 +6,7 @@
 LANGUAGE=DE
 STAGE=dev
 
-STYLE_DIR="${PWD}/style"
+STYLE_DIR="${PWD}/pdf-theme"
 BUILD_DIR="${PWD}/build"
 
 if [ $# -lt 1 ]
@@ -23,7 +23,7 @@ FILE_NAME="${FILE%.*}"
 
 
 function convertHostDirectory () {
- 
+
   # convert given directory path if running in WSL
   if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     echo $(wslpath -m $(realpath $1))
