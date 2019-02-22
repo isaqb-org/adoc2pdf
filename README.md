@@ -17,6 +17,13 @@ Call the `adoc2pdf.sh` script from the command line with the input filename (ful
 
     $./adoc2pdf.sh /Users/gstarke/projects/isaqb/foundation/curriculum-foundation.adoc
 
+The default language being rendered is English. To explicitly define the language for which a document should be created you can use a second command line parameter with a language code, for example:
+
+    $./adoc2pdf.sh /Users/gstarke/projects/isaqb/foundation/curriculum-foundation.adoc DE
+
+The default stage is dev and will include remarks from reviewers. To explicitly define the stage 'prod' you can use a third command line parameter:
+
+    $./adoc2pdf.sh /Users/gstarke/projects/isaqb/foundation/curriculum-foundation.adoc DE prod
 
 ### interactive configuration: convert.sh
 Call the `convert.sh` script from the command line with

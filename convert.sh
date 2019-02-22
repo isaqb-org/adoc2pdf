@@ -1,7 +1,7 @@
 #!/bin/sh
 
 convertHostDirectory () {
- 
+
   # convert given directory path if running in WSL
   if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
     echo $(wslpath -m $(realpath $1))
@@ -16,7 +16,7 @@ FILE=$(basename "$FILE_PATH")
 ADOC_DIR=`dirname "$FILE_PATH"`
 FILE_NAME="${FILE%.*}"
 
-STYLE_DIR="${PWD}/style"
+STYLE_DIR="${PWD}/pdf-theme"
 BUILD_DIR="${PWD}/build"
 
 echo "Transforming $FILE to PDF"
@@ -36,5 +36,5 @@ docker run --rm -i -t \
    isaqb-adoc2pdf \
    EN \
    dev \
-   $1 
+   $1
 printf "...done\n\n"

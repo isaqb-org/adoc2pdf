@@ -3,8 +3,8 @@
 # helper, so you don't need to remember docker syntax...
 
 # some parameters
-LANGUAGE=DE
-STAGE=dev
+LANGUAGE=${2:-EN}
+STAGE=${3:-dev}
 
 STYLE_DIR="${PWD}/pdf-theme"
 BUILD_DIR="${PWD}/build"
@@ -20,7 +20,13 @@ FILE=$(basename "$FILE_PATH")
 ADOC_DIR=`dirname "$FILE_PATH"`
 FILE_NAME="${FILE%.*}"
 
-
+# if STAGE="prod" we need to exclude remarks and comments
+if [[ $STAGE = "prod" ]]
+then
+  WITHREMARKS=""
+else
+  WITHREMARKS="-a withRemarks"
+fi
 
 function convertHostDirectory () {
 
@@ -57,10 +63,11 @@ docker run --rm \
    -a pdf-style=isaqb \
    -a pdf-fontsdir=/style/fonts  \
    -a imagesdir=/documents/images \
-   -a withRemarks \
+   ${WITHREMARKS} \
    -a language=$LANGUAGE \
    --verbose \
    --failure-level=WARN\
    -D /build \
+   -o ${FILE_NAME}_${LANGUAGE}_${STAGE}.pdf \
    /documents/$FILE_NAME.adoc || { echo "asciidoc-pdf conversion failed"; exit 1; }
 printf "...done\n\n"
